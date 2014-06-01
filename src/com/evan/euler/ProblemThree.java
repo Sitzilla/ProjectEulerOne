@@ -23,7 +23,8 @@ public class ProblemThree {
 			}
 			
 			if (primeNumber == true) {
-				return l;
+				long factor = (long) (600851475143.0/l);
+				return (factor);
 			}
 		
 		
