@@ -1,5 +1,8 @@
 package com.evan.euler;
 
+/*The prime factors of 13195 are 5, 7, 13 and 29.
+What is the largest prime factor of the number 600851475143 ?
+ */
 public class ProblemThree {
 
 	public static void main(String args[]) {
@@ -26,8 +29,7 @@ public class ProblemThree {
 				long factor = (long) (600851475143.0/l);
 				return (factor);
 			}
-		
-		
+
 		}
 		return 0;
 	}
