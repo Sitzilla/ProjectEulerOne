@@ -4,7 +4,7 @@ package com.evan.euler;
 What is the 10 001st prime number?
  */
 
-public class ProblemSeven extends ProblemThree{
+public class ProblemSeven extends MathFunctions{
 	public static void main(String args[]) {
 		int answer = 0;
 		
