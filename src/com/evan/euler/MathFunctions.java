@@ -41,4 +41,38 @@ public class MathFunctions {
 		
 	}
 	
+	//takes a string of numbers and returns an ArrayList of single integers
+	public static List<Integer> addStringToArray(String stringOfNumbers){
+		List<Integer> list = new ArrayList<Integer>();
+		int stringLength = 0;
+		
+			
+		stringLength = stringOfNumbers.length();
+		
+		for (int i=0; i<=stringLength-1;i++){
+			StringBuilder strBuild = new StringBuilder();
+			strBuild.append(stringOfNumbers.charAt(i));
+			list.add(Integer.parseInt(strBuild.toString()));		
+			}
+		
+		return list;
+	}
+	//takes a string of numbers and returns an ArrayList of 50 digit integers
+	public static List<Long> addStringToArrayFiftyDigit(String stringOfNumbers){
+		List<Long> list = new ArrayList<Long>();
+		int stringLength = 0;
+		StringBuilder strBuild = new StringBuilder();
+			
+		stringLength = stringOfNumbers.length();
+		
+		for (int i=0; i<=stringLength-1;i+=50){
+			for (int j=0; j<=49; j++){
+			
+			strBuild.append(stringOfNumbers.charAt(j));
+				
+			}
+			list.add(Long.parseLong(strBuild.toString()));	
+		}
+		return list;
+	}
 }
