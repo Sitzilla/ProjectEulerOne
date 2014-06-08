@@ -1,5 +1,6 @@
 package com.evan.euler;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,34 @@ public class MathFunctions {
 		return list;
 		
 	}
+	//recursive method that takes in an integer and returns the number of terms in that integer's Collatz Sequence
+	public static long collatzSequence(long value, long loopCounter) {
+		long answer = 0;
+		
+		if (value==1){
+			return loopCounter;
+		}
+			if (value%2==0){
+			value /= 2;
+			} else {
+			value = (3*value)+1;
+			}
+			loopCounter++;
+			
+			
+			answer = collatzSequence(value, loopCounter);
+			return answer;
+		}
+		
+	//returns the largest of two numbers
+		public static int isLargest(int sum, int largestProduct){
+			if (largestProduct<=sum){
+				return sum;
+			}
+				return largestProduct;
+		}
+		
+	
 	
 	//takes a string of numbers and returns an ArrayList of single integers
 	public static List<Integer> addStringToArray(String stringOfNumbers){
@@ -51,7 +80,7 @@ public class MathFunctions {
 		
 		for (int i=0; i<=stringLength-1;i++){
 			StringBuilder strBuild = new StringBuilder();
-			strBuild.append(stringOfNumbers.charAt(i));
+			strBuild.append((stringOfNumbers).charAt(i));
 			list.add(Integer.parseInt(strBuild.toString()));		
 			}
 		
