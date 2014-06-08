@@ -22,7 +22,19 @@ public class MathFunctions {
 		return true;
 	}
 	
+	//takes a number and returns its factorial
+	public static BigInteger numberFactorial(long i){
+		BigInteger product = BigInteger.valueOf(1);
+		
+		for (int j=1; j<=i; j++){
+			product = product.multiply(BigInteger.valueOf(j));
+		
+		}
+		return product;
+	}
 	
+	
+	//takes in a number and lists out its factors
 	public static List<Integer> factorsOfNumber(int value){
 		List<Integer> list = new ArrayList<Integer>();
 		
