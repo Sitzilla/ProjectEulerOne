@@ -1,5 +1,9 @@
 package com.evan.euler;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,89 @@ public class MathFunctions {
 			}
 		}
 		return true;
+	}
+	
+/*reads a file and returns a string ArrayList.  String is split into substrings based on ',' separating
+ * each piece into an ArrayList
+ */
+	public static ArrayList<String> readsFileAsString(String file) throws IOException{
+		String line = null;
+		ArrayList<String> list = new ArrayList<String>();
+		
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+	
+		//adds each individual name into ArrayList list
+		while ((line = reader.readLine()) != null) {
+			String[] parts = line.split(",");
+			for (String part : parts) {
+			    list.add(part);
+			}
+		}
+
+		
+		return list;
+	}
+	
+	//accepts an English character (upper or lower case) and returns an associated value 1-26
+	public static int alphabeticalValueOfLetter(char character){
+		int value = 0;
+		
+		switch (character){
+		
+		case 'a': case 'A': value = 1;
+		break;
+		case 'b': case 'B': value = 2;
+		break;					
+		case 'c': case 'C': value = 3;
+		break;
+		case 'd': case 'D': value = 4;
+		break;
+		case 'e': case 'E': value = 5;
+		break;
+		case 'f': case 'F': value = 6;
+		break;
+		case 'g': case 'G': value = 7;
+		break;
+		case 'h': case 'H': value = 8;
+		break;
+		case 'i': case 'I': value = 9;
+		break;
+		case 'j': case 'J': value = 10;
+		break;
+		case 'k': case 'K': value = 11;
+		break;
+		case 'l': case 'L': value = 12;
+		break;
+		case 'm': case 'M': value = 13;
+		break;
+		case 'n': case 'N': value = 14;
+		break;
+		case 'o': case 'O': value = 15;
+		break;
+		case 'p': case 'P': value = 16;
+		break;
+		case 'q': case 'Q': value = 17;
+		break;
+		case 'r': case 'R': value = 18;
+		break;
+		case 's': case 'S': value = 19;
+		break;
+		case 't': case 'T': value = 20;
+		break;
+		case 'u': case 'U': value = 21;
+		break;
+		case 'v': case 'V': value = 22;
+		break;
+		case 'w': case 'W': value = 23;
+		break;
+		case 'x': case 'X': value = 24;
+		break;
+		case 'y': case 'Y': value = 25;
+		break;
+		case 'z': case 'Z': value = 26;
+		break;
+		}
+		return value;
 	}
 	
 	//takes a number and returns its factorial
