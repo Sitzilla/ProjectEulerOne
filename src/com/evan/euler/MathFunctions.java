@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 // A class of assorted math functions to be used in other Project Euler Classes
@@ -13,6 +14,80 @@ import java.util.List;
 
 public class MathFunctions {
 
+	//method that takes in an integer, and returns true if it is an abundant number
+	//and returns false if it is not abundant
+	public static boolean isAbundantNumber(final int value){
+		List<Integer> list = new ArrayList<Integer>();
+		int sum = 0;
+		
+		list = factorsOfNumber(value);
+		
+		//remove any duplicates from values that are perfect squares
+		list = removeDuplicatesFromArrayList(list);
+		
+		//sums all of the values in the list
+		sum = sumOfInts(list);
+		
+		//subtract out the initial value passed in
+		sum -= value;
+		
+		// if the number is abundant return true
+		if (sum > value){
+			return true;
+		}
+		
+		//else return false
+		return false;
+	}
+	
+	//takes an array of integers and removes any duplicate numbers
+	public static List<Integer> removeDuplicatesFromArrayList(List<Integer> list){
+		HashSet hs = new HashSet();
+		
+		hs.addAll(list);
+		list.clear();
+		list.addAll(hs);
+		
+		return list;
+	}
+	
+	//returns the larger of two numbers
+			public static int isLargest(int sum, int largestProduct){
+				if (largestProduct<=sum){
+					return sum;
+				}
+					return largestProduct;
+			}
+			
+	//takes an arraylist of integers and returns their sum
+	public static int sumOfInts(List<Integer> list){
+		int sum = 0;
+		for (int i = 0; i < list.size(); i++){
+			sum += list.get(i);
+		}
+		return sum;
+	}
+	
+	//takes in a number and lists out its factors (***allows repeat factors to exist!!!)
+		public static List<Integer> factorsOfNumber(final int value){
+			List<Integer> list = new ArrayList<Integer>();
+			
+			if (value==1){
+				list.add(1);
+				return list;
+			}
+			
+				for (int i=1;i <= Math.sqrt(value);i++){
+					if (value%i==0){
+						list.add(i);
+						list.add(value/i);
+					}
+				}
+			
+			return list;
+			
+		}
+	
 	public static boolean isPrime(long value){
 		if (value < 2) {
 			return false;
@@ -46,6 +121,25 @@ public class MathFunctions {
 		
 		return list;
 	}
+	
+	/*reads a file and returns a string ArrayList.  Each line on the file is considered a different string
+	 */
+		public static ArrayList<String> readsFileAsStringByLine(String file) throws IOException{
+			String line = null;
+			ArrayList<String> lines = new ArrayList<String>();
+			
+				BufferedReader reader = new BufferedReader(new FileReader(file));
+		
+			//adds each individual name into ArrayList list
+			while ((line = reader.readLine()) != null) {
+				    lines.add(line);
+				
+			}
+
+			
+			return lines;
+		}
+	
 	
 	//accepts an English character (upper or lower case) and returns an associated value 1-26
 	public static int alphabeticalValueOfLetter(char character){
@@ -121,25 +215,7 @@ public class MathFunctions {
 	}
 	
 	
-	//takes in a number and lists out its factors
-	public static List<Integer> factorsOfNumber(int value){
-		List<Integer> list = new ArrayList<Integer>();
-		
-		if (value==1){
-			list.add(1);
-			return list;
-		}
-		
-			for (int i=1;i <= Math.sqrt(value);i++){
-				if (value%i==0){
-					list.add(i);
-					list.add(value/i);
-				}
-			}
-		
-		return list;
-		
-	}
+	
 	//recursive method that takes in an integer and returns the number of terms in that integer's Collatz Sequence
 	public static long collatzSequence(long value, long loopCounter) {
 		long answer = 0;
@@ -157,14 +233,6 @@ public class MathFunctions {
 			
 			answer = collatzSequence(value, loopCounter);
 			return answer;
-		}
-		
-	//returns the largest of two numbers
-		public static int isLargest(int sum, int largestProduct){
-			if (largestProduct<=sum){
-				return sum;
-			}
-				return largestProduct;
 		}
 		
 	

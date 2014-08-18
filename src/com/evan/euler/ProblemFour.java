@@ -10,7 +10,7 @@ public class ProblemFour {
 		long answer = 0;
 		boolean pally;
 		
-	//	pally = isPalendrome("12344488321");
+	//	pally = isPalendrome("12344488321	");
 		
 		answer = ProblemFour();
 		

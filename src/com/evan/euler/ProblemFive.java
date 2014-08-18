@@ -8,10 +8,16 @@ public class ProblemFive {
 
 	public static void main(String args[]) {
 		int answer = 0;
+		long startTime = System.currentTimeMillis();
 		
 		answer = ProblemFive();
 		
 		System.out.println(answer);
+		
+		//length of time for the program to run
+				long endTime   = System.currentTimeMillis();
+				float totalTime = endTime - startTime;
+				System.out.println("Total runtime was: " + totalTime/1000 + " seconds.");
 	}
 
 	private static int ProblemFive() {
