@@ -14,6 +14,36 @@ import java.util.List;
 
 public class MathFunctions {
 
+	//takes in a long, potentially repetative string and attempts to return the pattern
+	public static String stringPattern(String value){
+		String pattern = "";
+		
+		
+		for (int i = 1; i < Math.sqrt(value.length());i++){
+			StringBuilder strFirst = new StringBuilder("");
+			StringBuilder strSecond = new StringBuilder("");
+			StringBuilder strThird = new StringBuilder("");
+			
+			for (int j = 1; j < 1*i+1; j++){
+				strFirst.append(value.charAt(j));
+			}
+			for (int j = 1*i+1; j < 2*i+1; j++){
+				strSecond.append(value.charAt(j));
+			}
+			for (int j = 2*i+1; j < 3*i+1; j++){
+				strThird.append(value.charAt(j));
+			}
+			if (strFirst.toString().equals(strSecond.toString())&& strFirst.toString().equals(strThird.toString())){
+				return strFirst.toString();
+			}
+			
+		}
+		
+		
+		
+		return "0";
+	}
+	
 	//method that takes in an integer, and returns true if it is an abundant number
 	//and returns false if it is not abundant
 	public static boolean isAbundantNumber(final int value){
