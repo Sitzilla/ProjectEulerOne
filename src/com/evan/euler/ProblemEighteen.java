@@ -1,12 +1,16 @@
 package com.evan.euler;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProblemEighteen {
 
 	static Integer[][] inputArrayList = new Integer[4][4]; //first is row/level, second is column/index.  Counting starts at 0
 	
-	public static void main(String args[]){
+	public static void main(String args[]) throws IOException{
 		long answer = 0;
 		long startTime = System.currentTimeMillis();
 		
@@ -24,7 +28,7 @@ public class ProblemEighteen {
 	}
 
 	
-	ProblemEighteen() {
+	ProblemEighteen() throws IOException {
 		long answer;
 		inputArrayList[0][0] = 3;
 		inputArrayList[1][0] = 7;
@@ -36,9 +40,9 @@ public class ProblemEighteen {
 		inputArrayList[3][1] = 5;
 		inputArrayList[3][2] = 9;
 		inputArrayList[3][3] = 3;
-		answer = solveProblem();
-		
-		System.out.println("Largest Path: " + answer);
+		//answer = solveProblem();
+		readTextFile();
+	//	System.out.println("Largest Path: " + answer);
 	}
 	
 	public long solveProblem(){
@@ -82,15 +86,50 @@ public class ProblemEighteen {
 		return valueBiggest;
 	}
 	
-	public void readTextFile(){
-		ArrayList<String> list = new ArrayList<String>();
+	public void readTextFile() throws IOException{
+		ArrayList<String> list;
 		
-		list = readsFileAsString("C:/Users/esitzes/Documents/names.txt");
+		list = redFileOfNumbers("C:/Users/Public/Documents/Test_folder/Euler18.txt");
 		
 		
 		
 	}
 	
+	public ArrayList<String> redFileOfNumbers(String filepath) throws IOException{
+		String line = null;
+		ArrayList<String> listRaw = new ArrayList<String>();
+		ArrayList<String> listOutput = new ArrayList<String>();
+		int indexRow = 0;
+		
+			BufferedReader reader = new BufferedReader(new FileReader(filepath));
+	
+		//adds each individual row in the input into ArrayList list
+		while ((line = reader.readLine()) != null) {
+			String[] parts = line.split(";");
+			for (String part : parts) {
+				listRaw.add(part);
+			}
+		}
+		
+		//takes each row and splits them into indexed numbers
+		for (int i = 0; i < listRaw.size();i++){
+			int  indexColumn = 0;
+			String[] parts = listRaw.get(i).split(" ");
+			for (String part : parts) {
+				
+				inputArrayList[indexRow][0] = 3;
+				
+			//    listOutput.add(part);
+			}
+			
+		}
+		
+		
+		
+		return null;
+		
+		
+	}
 	
 	
 }
