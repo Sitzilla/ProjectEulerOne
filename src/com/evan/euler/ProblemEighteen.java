@@ -1,7 +1,6 @@
 package com.evan.euler;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,14 +8,15 @@ import java.util.ArrayList;
 public class ProblemEighteen {
 
 	static Integer[][] inputArrayList = new Integer[4][4]; //first is row/level, second is column/index.  Counting starts at 0
+	StringBuilder calculatedPath = new StringBuilder();
+	ArrayList<String> memoString = new ArrayList<String>();
+	ArrayList<Integer> memoInt = new ArrayList<Integer>();
 	
 	public static void main(String args[]) throws IOException{
 		long answer = 0;
 		long startTime = System.currentTimeMillis();
 		
 		ProblemEighteen newAnswer = new ProblemEighteen();
-		
-//		answer = solveProblem();
 		
 		System.out.println(answer);
 		
@@ -30,19 +30,9 @@ public class ProblemEighteen {
 	
 	ProblemEighteen() throws IOException {
 		long answer;
-		inputArrayList[0][0] = 3;
-		inputArrayList[1][0] = 7;
-		inputArrayList[1][1] = 4;
-		inputArrayList[2][0] = 2;
-		inputArrayList[2][1] = 4;
-		inputArrayList[2][2] = 6;
-		inputArrayList[3][0] = 8;
-		inputArrayList[3][1] = 5;
-		inputArrayList[3][2] = 9;
-		inputArrayList[3][3] = 3;
-		//answer = solveProblem();
 		readTextFile();
-	//	System.out.println("Largest Path: " + answer);
+		answer = solveProblem();
+		System.out.println("Largest Path: " + answer);
 	}
 	
 	public long solveProblem(){
@@ -65,31 +55,66 @@ public class ProblemEighteen {
 		long valueRight=0;
 		long valueBiggest;
 		
+		calculatedPath.append(depth);
+		calculatedPath.append(index);
+		
 		if (depth==0){ // || if the value is already known
-			return 3;
+//			memoString.add(calculatedPath.toString());
+//			memoInt.add(inputArrayList[depth][index]);
+			return inputArrayList[depth][index];
 		}
+		if (memoString.contains(calculatedPath)){
+			int tempIndex;
+			
+			tempIndex = memoString.indexOf(calculatedPath);
+			
+			calculatedPath.delete(calculatedPath.length()-Integer.toString(index).length(),calculatedPath.length());
+			calculatedPath.delete(calculatedPath.length()-Integer.toString(depth).length(),calculatedPath.length());
+			
+			return memoInt.get(tempIndex);
+			
+		}else{
 		
-		if (index!=0){
-			valueLeft = recursiveAddition(depth-1, index-1);
-		}
-		if (index!=depth){
-		valueRight = recursiveAddition(depth-1, index);
-		}
-		if (valueLeft>valueRight){
-			valueBiggest = valueLeft;
-		} else{ 
-			valueBiggest = valueRight;
-		}
-		
-		valueBiggest += inputArrayList[depth][index];
-		
-		return valueBiggest;
+			if (index!=0){
+				valueLeft = recursiveAddition(depth-1, index-1);
+			}
+			if (index!=depth){
+			valueRight = recursiveAddition(depth-1, index);
+			}
+			if (valueLeft>valueRight){
+				valueBiggest = valueLeft;
+			} else{ 
+				valueBiggest = valueRight;
+			}
+			
+			valueBiggest += inputArrayList[depth][index];
+			
+			//return memo
+			return valueBiggest;
+			}
 	}
 	
+	
+	public long returnCalculatedPath(){
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return 0;
+	}
+	
+	
+	
+	//=====code to put the text to variables=============
 	public void readTextFile() throws IOException{
 		ArrayList<String> list;
 		
-		list = redFileOfNumbers("C:/Users/Public/Documents/Test_folder/Euler18.txt");
+		list = redFileOfNumbers("C:/Users/esitzes/Documents/ProjectEuler/Euler67test.txt");
 		
 		
 		
@@ -117,10 +142,10 @@ public class ProblemEighteen {
 			String[] parts = listRaw.get(i).split(" ");
 			for (String part : parts) {
 				
-				inputArrayList[indexRow][0] = 3;
-				
-			//    listOutput.add(part);
+				inputArrayList[indexRow][indexColumn] = Integer.parseInt(part);
+				indexColumn += 1;
 			}
+			indexRow += 1;
 			
 		}
 		
