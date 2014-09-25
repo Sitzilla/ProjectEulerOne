@@ -18,12 +18,12 @@ public class ProblemEighteen {
 		
 		ProblemEighteen newAnswer = new ProblemEighteen();
 		
-		System.out.println(answer);
+	//	System.out.println(answer);
 		
 		//length of time for the program to run
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
-		System.out.println("Total runtime was: " + totalTime/1000 + " seconds.");
+	//	System.out.println("Total runtime was: " + totalTime/1000 + " seconds.");
 		
 	}
 
@@ -32,7 +32,7 @@ public class ProblemEighteen {
 		long answer;
 		readTextFile();
 		answer = solveProblem();
-		System.out.println("Largest Path: " + answer);
+	//	System.out.println("Largest Path: " + answer);
 	}
 	
 	public long solveProblem(){
@@ -126,7 +126,7 @@ public class ProblemEighteen {
 	public void readTextFile() throws IOException{
 		ArrayList<String> list;
 		
-		list = redFileOfNumbers("C:/Users/esitzes/Documents/ProjectEuler/Euler67test.txt");
+		list = redFileOfNumbers("C:/Users/Public/Documents/Test_folder/Euler18.txt");
 		
 		
 		
