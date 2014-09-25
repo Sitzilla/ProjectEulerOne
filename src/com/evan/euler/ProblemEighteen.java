@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class ProblemEighteen {
 
-	static Integer[][] inputArrayList = new Integer[4][4]; //first is row/level, second is column/index.  Counting starts at 0
+	static Long[][] inputArrayList = new Long[4][4]; //first is row/level, second is column/index.  Counting starts at 0
 	StringBuilder calculatedPath = new StringBuilder();
 	ArrayList<String> memoString = new ArrayList<String>();
-	ArrayList<Integer> memoInt = new ArrayList<Integer>();
+	ArrayList<Long> memoLong = new ArrayList<Long>();
 	
 	public static void main(String args[]) throws IOException{
 		long answer = 0;
@@ -55,31 +55,43 @@ public class ProblemEighteen {
 		long valueRight=0;
 		long valueBiggest;
 		
-		calculatedPath.append(depth);
-		calculatedPath.append(index);
+//		calculatedPath.append(depth);
+//		calculatedPath.append(index);
 		
 		if (depth==0){ // || if the value is already known
-//			memoString.add(calculatedPath.toString());
-//			memoInt.add(inputArrayList[depth][index]);
+			calculatedPath.append(depth);
+			calculatedPath.append(index);
+			memoString.add(calculatedPath.toString());
+			memoLong.add(inputArrayList[depth][index]);
 			return inputArrayList[depth][index];
 		}
-		if (memoString.contains(calculatedPath)){
+		if (memoString.contains(calculatedPath.toString())){
 			int tempIndex;
 			
-			tempIndex = memoString.indexOf(calculatedPath);
+			tempIndex = memoString.indexOf(calculatedPath.toString());
 			
-			calculatedPath.delete(calculatedPath.length()-Integer.toString(index).length(),calculatedPath.length());
-			calculatedPath.delete(calculatedPath.length()-Integer.toString(depth).length(),calculatedPath.length());
+//			calculatedPath.delete(calculatedPath.length()-Integer.toString(index).length(),calculatedPath.length());
+//			calculatedPath.delete(calculatedPath.length()-Integer.toString(depth).length(),calculatedPath.length());
 			
-			return memoInt.get(tempIndex);
+			return memoLong.get(tempIndex);
 			
 		}else{
 		
+			//go right
 			if (index!=0){
 				valueLeft = recursiveAddition(depth-1, index-1);
+				calculatedPath.append(depth);
+				calculatedPath.append(index);
+				memoString.add(calculatedPath.toString());
+				memoLong.add((inputArrayList[depth][index])+valueLeft);
 			}
+			//go left
 			if (index!=depth){
 			valueRight = recursiveAddition(depth-1, index);
+			calculatedPath.append(depth);
+			calculatedPath.append(index);
+			memoString.add(calculatedPath.toString());
+			memoLong.add((inputArrayList[depth][index])+valueRight);
 			}
 			if (valueLeft>valueRight){
 				valueBiggest = valueLeft;
@@ -142,7 +154,7 @@ public class ProblemEighteen {
 			String[] parts = listRaw.get(i).split(" ");
 			for (String part : parts) {
 				
-				inputArrayList[indexRow][indexColumn] = Integer.parseInt(part);
+				inputArrayList[indexRow][indexColumn] = Long.parseLong(part);
 				indexColumn += 1;
 			}
 			indexRow += 1;
